@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        REGISTRY_CREDENTIAL = "${params.IMAGE_TAG}"
+        REGISTRY_CREDENTIAL = "dockerhub"
     }
 
     stages {
