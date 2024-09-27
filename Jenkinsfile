@@ -26,7 +26,7 @@ pipeline {
 
         stage('Deploy to server'){
             steps{
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'bappy-1',
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'test-server',
                 transfers: [sshTransfer(cleanRemote: false, excludes: '',
                 execCommand: '''cd /home/ec2-user/
                 sh deployment.sh''',
