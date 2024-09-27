@@ -38,7 +38,7 @@ pipeline {
         }
 
 
-
+/*
         stage('Deploy to server'){
             steps{
                 sshPublisher(publishers: [sshPublisherDesc(configName: 'test-server',
@@ -58,6 +58,6 @@ pipeline {
                 useWorkspaceInPromotion: false,
                 verbose: false)])
             }
-        }
+        } */
     }
 }
