@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        REGISTRY_CREDENTIAL = "${params.IMAGE_TAG}"
+    }
+
     stages {
 
         stage('Git') {
@@ -18,8 +22,18 @@ pipeline {
 
         stage('Docker build and push'){
             steps{
-                sh 'sh create-package.sh'
+                script {
+                    docker.withRegistry('', REGISTRY_CREDENTIAL) {
+                sh """
+                ./mvnw clean install
+                docker rmi -f robystunna2/itgenius &>/dev/null && echo 'Removed old container'
+                docker build -t robystunna2/itgenius .
+                docker push robystunna2/itgenius
+                """
+                
+                }
             }
+        }
         }
 
 
