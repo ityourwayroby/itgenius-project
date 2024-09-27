@@ -25,6 +25,7 @@ pipeline {
                 script {
                     docker.withRegistry('', REGISTRY_CREDENTIAL) {
                 sh """
+                sudo chmod +x ./mvnw
                 ./mvnw clean install
                 docker rmi -f robystunna2/itgenius &>/dev/null && echo 'Removed old container'
                 docker build -t robystunna2/itgenius .
