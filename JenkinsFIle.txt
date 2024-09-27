@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Git') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/MHbappy/itgenius.git'
+            }
+        }
+
+        stage('Test'){
+            steps{
+                echo 'test'
+            }
+        }
+
+        stage('Docker build and push'){
+            steps{
+                sh 'sh create-package.sh'
+            }
+        }
+
+
+
+        stage('Deploy to server'){
+            steps{
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'bappy-1',
+                transfers: [sshTransfer(cleanRemote: false, excludes: '',
+                execCommand: '''cd /home/bappy/Desktop/11
+                sh deployment.sh''',
+                execTimeout: 120000,
+                flatten: false,
+                makeEmptyDirs: false,
+                noDefaultExcludes: false,
+                patternSeparator: '[, ]+',
+                remoteDirectory: '/home/bappy',
+                remoteDirectorySDF: false,
+                removePrefix: '',
+                sourceFiles: '')],
+                usePromotionTimestamp: false,
+                useWorkspaceInPromotion: false,
+                verbose: false)])
+            }
+        }
+    }
+}
