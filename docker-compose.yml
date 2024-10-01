@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   itgenuine-container:
-    image: robystunna2/itgenius
+    image: mhbappy18/itgenius
     container_name: itgenius
     ports:
       - "8085:8085"

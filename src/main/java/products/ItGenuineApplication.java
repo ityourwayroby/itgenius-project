@@ -24,8 +24,8 @@ public class ItGenuineApplication {
 				PasswordEncoder encoder = new BCryptPasswordEncoder();
 				Optional<User> user = userRepo.findByUsername("user");
 				if (!user.isPresent()){
-					RegistrationForm form = new RegistrationForm("user",
-							"pass", "Juan Esteban Sanchez");
+					RegistrationForm form = new RegistrationForm("info@itgenius.com",
+							"itgenius", "itgenius");
 					userRepo.save(form.toUser(encoder));
 				}
 			}
