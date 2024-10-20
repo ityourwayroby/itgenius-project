@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        REGISTRY_CREDENTIAL = "dockerhub"
+        REGISTRY_CREDENTIAL = "dockerhub_creds"
     }
 
     stages {
