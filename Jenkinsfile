@@ -27,9 +27,9 @@ pipeline {
                 sh """
                 chmod +x ./mvnw
                 ./mvnw clean install
-                docker rmi -f robystunna2/itgenius &>/dev/null && echo 'Removed old container'
-                docker build -t robystunna2/itgenius .
-                docker push robystunna2/itgenius
+                docker rmi -f itgeniusdevops/itgenius-docker-container-image &>/dev/null && echo 'Removed old images'
+                docker build -t itgeniusdevops/itgenius-docker-container-image:v001 .
+                docker push itgeniusdevops/itgenius-docker-container-image:v001
                 """
                 
                 }
